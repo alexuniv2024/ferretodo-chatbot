@@ -1,6 +1,7 @@
-// public/chatbot.js
+// public/chatbot.js - VERSIÓN DE DIAGNÓSTICO
 class ChatbotFerretodo {
     constructor() {
+        console.log('🚀 Iniciando Chatbot...');
         this.sessionId = this.generateSessionId();
         this.isOpen = false;
         this.init();
@@ -11,264 +12,74 @@ class ChatbotFerretodo {
     }
 
     init() {
+        console.log('📦 Session ID:', this.sessionId);
         this.createChatbotUI();
         this.attachEventListeners();
+        this.testConnection();
+    }
+
+    async testConnection() {
+        console.log('🔍 Probando conexión con el servidor...');
+        try {
+            const baseUrl = window.location.origin;
+            console.log('📍 Base URL:', baseUrl);
+            
+            // Probar endpoint test
+            const testUrl = `${baseUrl}/api/test`;
+            console.log('📤 Probando:', testUrl);
+            
+            const response = await fetch(testUrl);
+            console.log('📥 Respuesta status:', response.status);
+            
+            if (response.ok) {
+                const data = await response.json();
+                console.log('✅ Conexión exitosa:', data);
+            } else {
+                console.error('❌ Error en test:', response.status);
+            }
+        } catch (error) {
+            console.error('❌ Error de conexión:', error);
+        }
     }
 
     createChatbotUI() {
-        // Estilos del chatbot
-        const styles = `
-            .chatbot-container {
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                z-index: 10000;
-                font-family: 'Inter', sans-serif;
-            }
+        // ... (mantén el mismo CSS de antes) ...
+        const styles = `...`; // Tu CSS existente
 
-            .chatbot-button {
-                width: 60px;
-                height: 60px;
-                border-radius: 50%;
-                background: linear-gradient(135deg, #2e7d32, #1976d2);
-                border: none;
-                color: white;
-                font-size: 24px;
-                cursor: pointer;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-                transition: all 0.3s;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .chatbot-button:hover {
-                transform: scale(1.1);
-                box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-            }
-
-            .chatbot-window {
-                position: absolute;
-                bottom: 80px;
-                right: 0;
-                width: 350px;
-                height: 500px;
-                background: white;
-                border-radius: 15px;
-                box-shadow: 0 5px 30px rgba(0,0,0,0.2);
-                display: none;
-                flex-direction: column;
-                overflow: hidden;
-            }
-
-            .chatbot-window.open {
-                display: flex;
-            }
-
-            .chatbot-header {
-                background: linear-gradient(135deg, #2e7d32, #1976d2);
-                color: white;
-                padding: 15px 20px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            .chatbot-header h3 {
-                margin: 0;
-                font-size: 16px;
-                font-weight: 600;
-            }
-
-            .chatbot-header button {
-                background: none;
-                border: none;
-                color: white;
-                font-size: 20px;
-                cursor: pointer;
-            }
-
-            .chatbot-messages {
-                flex: 1;
-                padding: 20px;
-                overflow-y: auto;
-                background: #f5f5f5;
-            }
-
-            .message {
-                margin-bottom: 15px;
-                display: flex;
-                flex-direction: column;
-            }
-
-            .message.user {
-                align-items: flex-end;
-            }
-
-            .message.bot {
-                align-items: flex-start;
-            }
-
-            .message-content {
-                max-width: 80%;
-                padding: 10px 15px;
-                border-radius: 15px;
-                font-size: 14px;
-                line-height: 1.4;
-            }
-
-            .message.user .message-content {
-                background: linear-gradient(135deg, #2e7d32, #1976d2);
-                color: white;
-                border-bottom-right-radius: 5px;
-            }
-
-            .message.bot .message-content {
-                background: white;
-                color: #333;
-                border-bottom-left-radius: 5px;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            }
-
-            .chatbot-input {
-                padding: 20px;
-                background: white;
-                border-top: 1px solid #eee;
-                display: flex;
-                gap: 10px;
-            }
-
-            .chatbot-input input {
-                flex: 1;
-                padding: 10px;
-                border: 1px solid #ddd;
-                border-radius: 25px;
-                font-size: 14px;
-                outline: none;
-            }
-
-            .chatbot-input input:focus {
-                border-color: #2e7d32;
-            }
-
-            .chatbot-input button {
-                background: linear-gradient(135deg, #2e7d32, #1976d2);
-                color: white;
-                border: none;
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transition: all 0.3s;
-            }
-
-            .chatbot-input button:hover {
-                transform: scale(1.1);
-            }
-
-            .chatbot-input button:disabled {
-                opacity: 0.5;
-                cursor: not-allowed;
-            }
-
-            .typing-indicator {
-                display: flex;
-                gap: 5px;
-                padding: 10px 15px;
-                background: white;
-                border-radius: 15px;
-                border-bottom-left-radius: 5px;
-                width: fit-content;
-            }
-
-            .typing-indicator span {
-                width: 8px;
-                height: 8px;
-                background: #999;
-                border-radius: 50%;
-                animation: typing 1s infinite ease-in-out;
-            }
-
-            .typing-indicator span:nth-child(2) {
-                animation-delay: 0.2s;
-            }
-
-            .typing-indicator span:nth-child(3) {
-                animation-delay: 0.4s;
-            }
-
-            @keyframes typing {
-                0%, 60%, 100% { transform: translateY(0); }
-                30% { transform: translateY(-10px); }
-            }
-
-            .quick-replies {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 10px;
-                margin-top: 10px;
-            }
-
-            .quick-reply-btn {
-                background: white;
-                border: 1px solid #2e7d32;
-                color: #2e7d32;
-                padding: 8px 15px;
-                border-radius: 20px;
-                font-size: 12px;
-                cursor: pointer;
-                transition: all 0.3s;
-            }
-
-            .quick-reply-btn:hover {
-                background: #2e7d32;
-                color: white;
-            }
-        `;
-
-        // Añadir estilos
         const styleSheet = document.createElement('style');
         styleSheet.textContent = styles;
         document.head.appendChild(styleSheet);
 
-        // Crear HTML del chatbot
         const chatbotHTML = `
             <div class="chatbot-container">
                 <div class="chatbot-window" id="chatbotWindow">
                     <div class="chatbot-header">
                         <h3><i class="bi bi-tools me-2"></i>Asistente FERRETODO</h3>
-                        <button onclick="chatbot.toggleChat()">×</button>
+                        <button onclick="window.chatbot.toggleChat()">×</button>
                     </div>
                     <div class="chatbot-messages" id="chatbotMessages">
                         <div class="message bot">
                             <div class="message-content">
                                 ¡Hola! Soy el asistente virtual de FERRETODO. ¿En qué puedo ayudarte hoy?
                                 <div class="quick-replies" id="quickReplies">
-                                    <button class="quick-reply-btn" onclick="chatbot.sendQuickReply('¿Cuál es el horario de atención?')">🕒 Horario</button>
-                                    <button class="quick-reply-btn" onclick="chatbot.sendQuickReply('¿Qué productos tienen?')">🔨 Productos</button>
-                                    <button class="quick-reply-btn" onclick="chatbot.sendQuickReply('¿Dónde están ubicados?')">📍 Ubicación</button>
-                                    <button class="quick-reply-btn" onclick="chatbot.sendQuickReply('Hablar con un asesor')">👤 Asesor</button>
+                                    <button class="quick-reply-btn" onclick="window.chatbot.sendQuickReply('¿Cuál es el horario?')">🕒 Horario</button>
+                                    <button class="quick-reply-btn" onclick="window.chatbot.sendQuickReply('¿Qué productos?')">🔨 Productos</button>
+                                    <button class="quick-reply-btn" onclick="window.chatbot.sendQuickReply('¿Dónde están?')">📍 Ubicación</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="chatbot-input">
-                        <input type="text" id="chatbotInput" placeholder="Escribe tu mensaje..." onkeypress="if(event.key==='Enter') chatbot.sendMessage()">
-                        <button id="sendButton" onclick="chatbot.sendMessage()">
-                            <i class="bi bi-send"></i>
-                        </button>
+                        <input type="text" id="chatbotInput" placeholder="Escribe tu mensaje...">
+                        <button id="sendButton"><i class="bi bi-send"></i></button>
                     </div>
                 </div>
-                <button class="chatbot-button" onclick="chatbot.toggleChat()" id="chatbotButton">
+                <button class="chatbot-button" onclick="window.chatbot.toggleChat()" id="chatbotButton">
                     <i class="bi bi-chat-dots"></i>
                 </button>
             </div>
         `;
 
-        // Añadir al final del body
         document.body.insertAdjacentHTML('beforeend', chatbotHTML);
     }
 
@@ -278,35 +89,52 @@ class ChatbotFerretodo {
         this.sendButton = document.getElementById('sendButton');
         this.window = document.getElementById('chatbotWindow');
         this.button = document.getElementById('chatbotButton');
+
+        if (this.sendButton) {
+            this.sendButton.onclick = () => this.sendMessage();
+        }
+        if (this.input) {
+            this.input.onkeypress = (e) => {
+                if (e.key === 'Enter') this.sendMessage();
+            };
+        }
     }
 
     toggleChat() {
         this.isOpen = !this.isOpen;
-        this.window.classList.toggle('open', this.isOpen);
-        
-        if (this.isOpen) {
-            this.input.focus();
+        if (this.window) {
+            this.window.classList.toggle('open', this.isOpen);
+            if (this.isOpen && this.input) this.input.focus();
         }
     }
 
     async sendMessage() {
+        if (!this.input) return;
+        
         const message = this.input.value.trim();
         if (!message) return;
 
-        // Deshabilitar input mientras se envía
+        console.log('📝 Enviando mensaje:', message);
+
+        // Deshabilitar input
         this.input.disabled = true;
-        this.sendButton.disabled = true;
+        if (this.sendButton) this.sendButton.disabled = true;
 
         // Mostrar mensaje del usuario
         this.addMessage(message, 'user');
         this.input.value = '';
 
-        // Mostrar indicador de escritura
+        // Mostrar typing indicator
         this.showTypingIndicator();
 
         try {
-            // Enviar al servidor
-            const response = await fetch('/api/chat', {
+            const baseUrl = window.location.origin;
+            const apiUrl = `${baseUrl}/api/chat`;
+            
+            console.log('📤 Fetch URL:', apiUrl);
+            console.log('📤 Session ID:', this.sessionId);
+
+            const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -317,40 +145,64 @@ class ChatbotFerretodo {
                 })
             });
 
-            const data = await response.json();
+            console.log('📥 Response status:', response.status);
+            console.log('📥 Response headers:', [...response.headers.entries()]);
 
-            // Quitar indicador de escritura
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error('❌ Error response:', errorText);
+                throw new Error(`HTTP ${response.status}: ${errorText}`);
+            }
+
+            const data = await response.json();
+            console.log('📦 Data recibida:', data);
+
             this.hideTypingIndicator();
 
             if (data.success) {
                 this.addMessage(data.message, 'bot');
-                
-                // Si hay respuestas rápidas sugeridas por Dialogflow, mostrarlas
-                if (data.allData && data.allData.fulfillmentMessages) {
-                    this.showQuickReplies(data.allData.fulfillmentMessages);
-                }
             } else {
-                this.addMessage('Lo siento, tuve un problema. ¿Puedes intentar de nuevo?', 'bot');
+                this.addMessage('Lo siento, no entendí tu mensaje.', 'bot');
             }
 
         } catch (error) {
-            console.error('Error:', error);
+            console.error('❌ ERROR COMPLETO:', error);
+            console.error('❌ Error name:', error.name);
+            console.error('❌ Error message:', error.message);
+            console.error('❌ Error stack:', error.stack);
+            
             this.hideTypingIndicator();
-            this.addMessage('Error de conexión. Por favor intenta de nuevo.', 'bot');
+            
+            let errorMsg = 'Error de conexión. ';
+            if (!navigator.onLine) {
+                errorMsg += 'No hay internet.';
+            } else if (error.message.includes('Failed to fetch')) {
+                errorMsg += 'No se pudo conectar al servidor.';
+            } else {
+                errorMsg += error.message;
+            }
+            
+            this.addMessage(errorMsg, 'bot');
+        } finally {
+            // Habilitar input
+            if (this.input) {
+                this.input.disabled = false;
+                this.input.focus();
+            }
+            if (this.sendButton) this.sendButton.disabled = false;
         }
-
-        // Habilitar input
-        this.input.disabled = false;
-        this.sendButton.disabled = false;
-        this.input.focus();
     }
 
     sendQuickReply(message) {
-        this.input.value = message;
-        this.sendMessage();
+        if (this.input) {
+            this.input.value = message;
+            this.sendMessage();
+        }
     }
 
     addMessage(text, sender) {
+        if (!this.messagesContainer) return;
+        
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${sender}`;
         
@@ -361,11 +213,12 @@ class ChatbotFerretodo {
         messageDiv.appendChild(contentDiv);
         this.messagesContainer.appendChild(messageDiv);
         
-        // Scroll al último mensaje
         this.messagesContainer.scrollTop = this.messagesContainer.scrollHeight;
     }
 
     showTypingIndicator() {
+        if (!this.messagesContainer) return;
+        
         this.typingIndicator = document.createElement('div');
         this.typingIndicator.className = 'message bot';
         this.typingIndicator.innerHTML = `
@@ -384,14 +237,10 @@ class ChatbotFerretodo {
             this.typingIndicator.remove();
         }
     }
-
-    showQuickReplies(messages) {
-        // Aquí puedes procesar si Dialogflow envía sugerencias de respuestas rápidas
-        // Por ahora, mantenemos las respuestas rápidas estáticas
-    }
 }
 
-// Inicializar chatbot cuando la página cargue
+// Inicializar
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('🚀 DOM cargado, iniciando chatbot...');
     window.chatbot = new ChatbotFerretodo();
 });

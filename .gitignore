@@ -3,3 +3,6 @@ node_modules/
 ferretodo-credentials.json
 *.log
 .DS_Store
+dist/
+build/
+.vscode/
