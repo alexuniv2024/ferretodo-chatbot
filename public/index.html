@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FERRETODO · Todo en un mismo lugar</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Google Fonts - Moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+    <!-- ======= MENÚ DE NAVEGACIÓN ======= -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-dark-custom sticky-top">
+        <div class="container">
+            <!-- Logo a la izquierda -->
+            <a class="navbar-brand" href="#">
+                <span class="fs-3 fw-bold"><i class="bi bi-tools me-2"></i>FERRETODO</span>
+                <br><small class="fs-6 fw-light">Encuéntralo todo en un mismo lugar</small>
+            </a>
+            
+            <!-- Botón menú responsive -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarFerretodo">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Elementos del menú -->
+            <div class="collapse navbar-collapse" id="navbarFerretodo">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#inicio">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#servicios">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portafolio">Portafolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#blog">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contáctanos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#acerca">Acerca de</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ======= CARRUSEL PRINCIPAL ======= -->
+    <section id="inicio">
+        <div id="carruselFerretodo" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carruselFerretodo" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#carruselFerretodo" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#carruselFerretodo" data-bs-slide-to="2"></button>
+                <button type="button" data-bs-target="#carruselFerretodo" data-bs-slide-to="3"></button>
+                <button type="button" data-bs-target="#carruselFerretodo" data-bs-slide-to="4"></button>
+            </div>
+            
+            <div class="carousel-inner">
+                <!-- Imagen 1: Herramientas -->
+                <div class="carousel-item active" style="background-image: url('https://images.pexels.com/photos/1249611/pexels-photo-1249611.jpeg?_gl=1*5c2euj*_ga*MTY1Mjk2NjI4My4xNzE4OTAyNDIx*_ga_8JE65Q40S6*czE3NzE5ODI5MzkkbzEzJGcxJHQxNzcxOTgzMTAyJGo2MCRsMCRoMA..')">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>HERRAMIENTAS</h3>
+                        <p>Las mejores marcas para tus proyectos</p>
+                        <a href="#herramientas" class="btn btn-ferretodo-verde">Ver más</a>
+                    </div>
+                </div>
+                
+                <!-- Imagen 2: Pintura -->
+                <div class="carousel-item" style="background-image: url('https://images.pexels.com/photos/994164/pexels-photo-994164.jpeg?_gl=1*a3kqwv*_ga*MTY1Mjk2NjI4My4xNzE4OTAyNDIx*_ga_8JE65Q40S6*czE3NzE5ODI5MzkkbzEzJGcxJHQxNzcxOTgzMjM1JGo0NSRsMCRoMA..')">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>PINTURA</h3>
+                        <p>Colores para todos tus espacios</p>
+                        <a href="#pintura" class="btn btn-ferretodo-verde">Ver más</a>
+                    </div>
+                </div>
+                
+                <!-- Imagen 3: Selladores -->
+                <div class="carousel-item" style="background-image: url('https://sika.scene7.com/is/image/sikacs/pe-Selladores-de-juntas-teaser-01058171:16-9?wid=1867&hei=1050&fit=crop%2C1')">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>SELLADORES</h3>
+                        <p>Protección y durabilidad</p>
+                        <a href="#selladores" class="btn btn-ferretodo-verde">Ver más</a>
+                    </div>
+                </div>
+                
+                <!-- Imagen 4: Electricidad -->
+                <div class="carousel-item" style="background-image: url('https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=1600')">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>ELECTRICIDAD</h3>
+                        <p>Todo en instalaciones eléctricas</p>
+                        <a href="#electricidad" class="btn btn-ferretodo-verde">Ver más</a>
+                    </div>
+                </div>
+                
+                <!-- Imagen 5: Plomería -->
+                <div class="carousel-item" style="background-image: url('https://images.pexels.com/photos/14953886/pexels-photo-14953886.jpeg?_gl=1*pwep71*_ga*MTY1Mjk2NjI4My4xNzE4OTAyNDIx*_ga_8JE65Q40S6*czE3NzE5ODI5MzkkbzEzJGcxJHQxNzcxOTgzNTc2JGozMiRsMCRoMA..')">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>PLOMERÍA</h3>
+                        <p>Soluciones para tuberías y baños</p>
+                        <a href="#plomeria" class="btn btn-ferretodo-verde">Ver más</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Controles del carrusel -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carruselFerretodo" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carruselFerretodo" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- ======= TRES SECCIONES ÚLTIMOS ARTÍCULOS ======= -->
+    <section class="py-5" id="blog">
+        <div class="container">
+            <h2 class="section-title">Últimos artículos</h2>
+            
+            <div class="row g-4">
+                <!-- Artículo 1: Taladro -->
+                <div class="col-lg-4">
+                    <div class="card card-artículo">
+                        <img src="https://res-de.togroup.com/stc/home_product/emtop/userfiles/1/images/photo/20240306110316646/ULMDL0681.jpg" class="card-img-top" alt="Taladro percutor">
+                        <div class="card-body">
+                            <span class="badge-categoría mb-3 d-inline-block">Herramientas</span>
+                            <h4 class="card-title fw-bold">Taladro</h4>
+                            <p class="text-muted small"><i class="bi bi-calendar me-2"></i>24/02/2026</p>
+                            <p class="card-text">Taladro roto martillo de 900w - Máxima potencia para tus proyectos de construcción.</p>
+                            <a href="#" class="btn btn-outline-primary">Leer más</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Artículo 2: Manpica 55/01 -->
+                <div class="col-lg-4">
+                    <div class="card card-artículo">
+                        <img src="https://www.manpica.com/wp-content/uploads/2021/08/Caucho-55-01-Interior-Exterior-Render-3.png" class="card-img-top" alt="Pintura">
+                        <div class="card-body">
+                            <span class="badge-categoría mb-3 d-inline-block">Pintura</span>
+                            <h4 class="card-title fw-bold">Manpica 55/01</h4>
+                            <p class="text-muted small"><i class="bi bi-calendar me-2"></i>24/02/2026</p>
+                            <p class="card-text">Caucho Clase B para interior y exterior - Máxima durabilidad y acabado profesional.</p>
+                            <a href="#" class="btn btn-outline-primary">Leer más</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Artículo 3: Simbi Turbo -->
+                <div class="col-lg-4">
+                    <div class="card card-artículo">
+                        <img src="https://simbi.com.ve/wp-content/uploads/2025/02/SILIPEX-TURBO.jpg" class="card-img-top" alt="Sellador">
+                        <div class="card-body">
+                            <span class="badge-categoría mb-3 d-inline-block">Selladores</span>
+                            <h4 class="card-title fw-bold">Simbi Turbo</h4>
+                            <p class="text-muted small"><i class="bi bi-calendar me-2"></i>24/02/2026</p>
+                            <p class="card-text">Simbi Sellador Turbo de secado rápido - Ideal para juntas y grietas.</p>
+                            <a href="#" class="btn btn-outline-primary">Leer más</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======= CARRUSEL DE OPINIONES (TESTIMONIOS) ======= -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+            
+            <div id="carruselTestimonios" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- Testimonio 1: Jhon Doe -->
+                    <div class="carousel-item active">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="testimonio-card">
+                                    <img src="https://randomuser.me/api/portraits/men/1.jpg" class="testimonio-img" alt="Jhon Doe">
+                                    <h4 class="testimonio-nombre">Jhon Doe</h4>
+                                    <p class="testimonio-cargo">Cliente</p>
+                                    <p class="testimonio-texto">
+                                        <i class="bi bi-quote"></i>
+                                        Excelente servicio, atención rápida y productos de calidad. ¡Muy recomendado!
+                                        <i class="bi bi-quote"></i>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonio 2: Catherina Doe -->
+                    <div class="carousel-item">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="testimonio-card">
+                                    <img src="https://randomuser.me/api/portraits/women/2.jpg" class="testimonio-img" alt="Catherina Doe">
+                                    <h4 class="testimonio-nombre">Catherina Doe</h4>
+                                    <p class="testimonio-cargo">Cliente</p>
+                                    <p class="testimonio-texto">
+                                        <i class="bi bi-quote"></i>
+                                        Gran variedad de productos, encuentro todo lo que necesito para mi hogar.
+                                        <i class="bi bi-quote"></i>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonio 3: Samuel Doe -->
+                    <div class="carousel-item">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="testimonio-card">
+                                    <img src="https://randomuser.me/api/portraits/men/3.jpg" class="testimonio-img" alt="Samuel Doe">
+                                    <h4 class="testimonio-nombre">Samuel Doe</h4>
+                                    <p class="testimonio-cargo">Cliente</p>
+                                    <p class="testimonio-texto">
+                                        <i class="bi bi-quote"></i>
+                                        Buena atención y excelente ubicación. Siempre me atienden con amabilidad.
+                                        <i class="bi bi-quote"></i>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Controles del carrusel -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#carruselTestimonios" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon bg-ferretodo-verde rounded-circle p-3" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carruselTestimonios" data-bs-slide="next">
+                    <span class="carousel-control-next-icon bg-ferretodo-verde rounded-circle p-3" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======= SECCIONES ADICIONALES (para el menú) ======= -->
+    
+    <!-- Servicios -->
+    <section class="py-5" id="servicios">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="text-center p-4 border rounded">
+                        <i class="bi bi-tools fs-1 text-ferretodo-verde"></i>
+                        <h4 class="mt-3">Venta de Herramientas</h4>
+                        <p class="text-muted">Amplio catálogo de herramientas manuales y eléctricas.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="text-center p-4 border rounded">
+                        <i class="bi bi-brush fs-1 text-ferretodo-verde"></i>
+                        <h4 class="mt-3">Asesoría en Pintura</h4>
+                        <p class="text-muted">Te ayudamos a elegir la pintura ideal para tu proyecto.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="text-center p-4 border rounded">
+                        <i class="bi bi-water fs-1 text-ferretodo-verde"></i>
+                        <h4 class="mt-3">Soluciones de Plomería</h4>
+                        <p class="text-muted">Productos y asesoría para instalaciones hidráulicas.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="text-center p-4 border rounded">
+                        <i class="bi bi-lightning fs-1 text-ferretodo-verde"></i>
+                        <h4 class="mt-3">Material Eléctrico</h4>
+                        <p class="text-muted">Todo para instalaciones eléctricas residenciales.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portafolio -->
+    <section class="py-5 bg-light" id="portafolio">
+        <div class="container">
+            <h2 class="section-title">Nuestros Proyectos</h2>
+            <p class="text-center mb-5">Hemos participado en numerosos proyectos de construcción, remodelación y mantenimiento. Aquí algunos ejemplos:</p>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Construcción">
+                        <div class="card-body">
+                            <h5>Remodelación Residencial</h5>
+                            <p class="text-muted">Proyecto completo de pintura y plomería.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://images.pexels.com/photos/416405/pexels-photo-416405.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Oficina">
+                        <div class="card-body">
+                            <h5>Oficina Comercial</h5>
+                            <p class="text-muted">Instalación eléctrica y sistemas de iluminación.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://images.pexels.com/photos/236705/pexels-photo-236705.jpeg?_gl=1*18ckbhh*_ga*MTY1Mjk2NjI4My4xNzE4OTAyNDIx*_ga_8JE65Q40S6*czE3NzE5ODI5MzkkbzEzJGcxJHQxNzcxOTg0NDUzJGo1MyRsMCRoMA..s=600" class="card-img-top" alt="Industrial">
+                        <div class="card-body">
+                            <h5>Nave Industrial</h5>
+                            <p class="text-muted">Mantenimiento y sellado de techos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Acerca de Nosotros -->
+    <section class="py-5" id="acerca">
+        <div class="container">
+            <h2 class="section-title">Acerca de FERRETODO</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <img src="https://images.pexels.com/photos/4481259/pexels-photo-4481259.jpeg?auto=compress&cs=tinysrgb&w=600" class="img-fluid rounded" alt="Nuestra tienda">
+                </div>
+                <div class="col-lg-6">
+                    <p>En <strong>FERRETODO</strong> somos tu aliado de confianza para todos los proyectos de construcción, remodelación y mantenimiento. Desde nuestras instalaciones en Caracas, ofrecemos una amplia gama de productos y asesoría especializada para que encuentres todo lo que necesitas en un solo lugar.</p>
+                    <p>Nuestra filosofía es simple: calidad, variedad y atención personalizada. Trabajamos con las mejores marcas del mercado para garantizar la satisfacción de nuestros clientes, ya sean profesionales de la construcción o entusiastas del bricolaje.</p>
+                    <p><strong>¡Visítanos y descubre por qué somos la ferretería de confianza para cientos de venezolanos!</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="py-5 bg-light" id="contacto">
+        <div class="container">
+            <h2 class="section-title">Contáctanos</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <h4>Información de contacto</h4>
+                    <p class="mb-4">Estamos aquí para ayudarte con tus proyectos.</p>
+                    
+                    <div class="d-flex mb-3">
+                        <i class="bi bi-geo-alt fs-4 text-ferretodo-verde me-3"></i>
+                        <div>
+                            <strong>Dirección:</strong><br>
+                            Av. Principal de la Industria, Local 42<br>
+                            Caracas, Venezuela
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex mb-3">
+                        <i class="bi bi-telephone fs-4 text-ferretodo-verde me-3"></i>
+                        <div>
+                            <strong>Teléfono:</strong><br>
+                            +58 212 555 1234
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex mb-3">
+                        <i class="bi bi-envelope fs-4 text-ferretodo-verde me-3"></i>
+                        <div>
+                            <strong>Email:</strong><br>
+                            contacto@ferretodo.com.ve
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex mb-3">
+                        <i class="bi bi-clock fs-4 text-ferretodo-verde me-3"></i>
+                        <div>
+                            <strong>Horario de atención:</strong><br>
+                            Lunes a viernes: 8:00 AM - 5:00 PM<br>
+                            Sábados: 8:00 AM - 12:00 PM
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <h4>Envíanos un mensaje</h4>
+                    <form>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Tu nombre">
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Tu email">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Asunto">
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="4" placeholder="Tu mensaje"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-ferretodo-verde">Enviar mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="martilloMagico" title="¡Golpea productos con el martillo mágico!">
+    🔨
+    </div>
+
+    <!-- ======= PIE DE PÁGINA (FOOTER) ======= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="mb-4">FERRETODO</h5>
+                    <p class="text-white-50">Encuéntralo todo en un mismo lugar. Tu ferretería de confianza en Caracas.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                        <a href="#"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <h5 class="mb-4">Enlaces rápidos</h5>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="bi bi-chevron-right me-2"></i>Política de privacidad</a></li>
+                        <li><a href="#"><i class="bi bi-chevron-right me-2"></i>Términos de uso</a></li>
+                        <li><a href="#"><i class="bi bi-chevron-right me-2"></i>Preguntas frecuentes</a></li>
+                        <li><a href="#"><i class="bi bi-chevron-right me-2"></i>Trabaja con nosotros</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <h5 class="mb-4">Newsletter</h5>
+                    <p class="text-white-50">Suscríbete para recibir ofertas y novedades.</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Tu email">
+                        <button class="btn btn-ferretodo-verde" type="button">Suscribir</button>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="bg-white opacity-25">
+            
+            <div class="text-center pt-3">
+                <p class="text-white-50 mb-0">© 2026 Ferretodo. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS y Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="martillomagico.js"></script>
+    <script src="chatbot.js"></script>
+</body>
+</html>
